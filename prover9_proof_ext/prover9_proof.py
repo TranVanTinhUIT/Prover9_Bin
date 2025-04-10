@@ -94,6 +94,14 @@ class Prover9Proof:
           break
     self.proof_steps = proof_steps
 
+  def __str__(self):
+    text = ''
+    for i in range(len(self.proof_steps)):
+      text += '\nStep {}:'.format(i)
+      text += '\n\tPremise: {}'.format(self.proof_steps[i].premise)
+      text += '\n\t=> {}'.format(self.proof_steps[i].progression)
+    return text
+  
 class ProofClause:
   literals: list[Expression]
   attributes: Optional[list[str]]
