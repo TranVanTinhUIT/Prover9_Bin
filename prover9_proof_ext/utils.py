@@ -55,22 +55,23 @@ def resolve_quantified_variables(exp: Expression, variableMap: dict[Variable, Co
     
     => return: `Takes(Tuan, NLP) & Passes(Tuan, NLP) -> AcquiresKnowledge(Tuan)`
   """
+  result = Expression.fromstring(str(exp))
 
+  if not isinstance(result, QuantifiedExpression):
+    return result
+  
+  # replace quantified variable
+  quantified_variable = result.variable
+  constant = variableMap.get(quantified_variable)
+  
+  if isinstance(result.term, QuantifiedExpression):
+    result.term = resolve_quantified_variables(result.term, variableMap) 
 
-  if isinstance(exp, QuantifiedExpression):
-    quantified_variable = exp.variable
-    constant = variableMap.get(quantified_variable)
-    replaced_exp = exp
-    
-    if constant is not None:
-      replaced_exp = replaced_exp.replace(quantified_variable, constant, replace_bound=True).term
-    else:
-      replaced_exp = Expression.fromstring(str(exp))
-    replaced_exp.term = resolve_quantified_variables(replaced_exp.term, variableMap)
-
-    return replaced_exp
-  else:
-    return exp
+  # replace quantified variable 
+  if constant is not None:
+    result = result.replace(quantified_variable, constant, replace_bound=True).term
+  
+  return result
 
 def find_same_predicate(fact: ApplicationExpression, application_exps: list[ApplicationExpression]):
   """
