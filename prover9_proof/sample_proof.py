@@ -1,4 +1,4 @@
-_proof = """
+proof_raw = """
 ============================== Prover9 ===============================
 Prover9 (64) version 2009-11A, November 2009.
 Process 72 was started by root on 1d8b1d3833ee,

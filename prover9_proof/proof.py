@@ -7,12 +7,12 @@ from prover9_proof.utils import detect_application_expressions, detect_quantifie
 
 class ProofStep:
   """
-  Class for an proof step. Ex: Takes(Tuan, NLP) & Passes(Tuan, NLP) -> AcquiresKnowledge(Tuan)
+  Represent for a step of proof. Ex: Takes(Tuan, NLP) & Passes(Tuan, NLP) -> AcquiresKnowledge(Tuan)
   """
 
   premise: Expression 
   """
-  The premise represent for proof step.
+  Reference premise.
 
   Ex: all x y. ( Takes(x, y) & Passes(x, y) -> AcquiresKnowledge(x) )
   """
@@ -89,7 +89,7 @@ class Proof:
                   extend_facts = [exp for exp in detect_application_expressions(proof_step.progression) if is_fact(exp) and exp not in facts]
                   facts.extend(extend_facts)
 
-        # Check for early finish if all quantified variables have value. 
+        # early finish if all quantified variables have value. 
         if proof_step.is_completed():
           break
     self.proof_steps = proof_steps
