@@ -5,7 +5,7 @@ from typing import Optional
 
 from prover9_proof_ext.utils import detect_application_expressions, detect_quantified_variables, resolve_quantified_variables, find_same_predicate, is_fact
 
-class Prover9ProofStep:
+class ProofStep:
   """
   Class for an proof step. Ex: Takes(Tuan, NLP) & Passes(Tuan, NLP) -> AcquiresKnowledge(Tuan)
   """
@@ -49,10 +49,10 @@ class Prover9ProofStep:
   def is_completed(self):
     return not isinstance(self.progression, QuantifiedExpression)
 
-class Prover9Proof:
+class Proof:
   
   clauses: list[ProofClause]
-  proof_steps: list[Prover9ProofStep]
+  proof_steps: list[ProofStep]
   _proof_node: ET.Element
 
   def __init__(self, proof_node: ET.Element):
@@ -64,7 +64,7 @@ class Prover9Proof:
   def init(self):
     rule_clauses = list(filter(lambda x: x.is_rule(), self.clauses))
     fact_clauses = list(filter(lambda x: x.is_fact(), self.clauses))
-    proof_steps = [Prover9ProofStep(rule_clause) for rule_clause in rule_clauses]
+    proof_steps = [ProofStep(rule_clause) for rule_clause in rule_clauses]
 
     facts = []
     for fact_clause in fact_clauses:
