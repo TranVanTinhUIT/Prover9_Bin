@@ -14,14 +14,14 @@ def detect_application_expressions(exp: Expression) -> list[ApplicationExpressio
     applications.append(exp)
   
   if isinstance(exp, QuantifiedExpression):
-    applications.append(detect_application_expressions(exp.term))
+    applications.extend(detect_application_expressions(exp.term))
 
   if isinstance(exp, BooleanExpression):
-    applications.append(detect_application_expressions(exp.first))
-    applications.append(detect_application_expressions(exp.second))
+    applications.extend(detect_application_expressions(exp.first))
+    applications.extend(detect_application_expressions(exp.second))
 
   if isinstance(exp, NegatedExpression):
-    applications.append(detect_application_expressions(exp.term))
+    applications.extend(detect_application_expressions(exp.term))
 
   return applications
 
