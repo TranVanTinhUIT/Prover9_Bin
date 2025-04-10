@@ -97,4 +97,4 @@ def is_fact(exp: ApplicationExpression):
     - `Take(Tuan, NLP)` -> True 
   """
   args = exp.uncurry()[1]
-  return all(isinstance(arg) for arg in args)
+  return all(isinstance(arg, ConstantExpression) for arg in args)
