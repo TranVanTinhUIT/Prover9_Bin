@@ -85,7 +85,7 @@ def find_same_predicate(fact: ApplicationExpression, application_exps: list[Appl
   => Return `Takes(x, y)`
   """
   fact_function, fact_args = fact.uncurry()
-  return next((application_exp for application_exp in application_exps if application_exp.uncurry()[0] == fact_function & len(application_exp.uncurry()[1]) == len(fact_args)), None)
+  return next((application_exp for application_exp in application_exps if application_exp.uncurry()[0] == fact_function and len(application_exp.uncurry()[1]) == len(fact_args)), None)
 
 def is_fact(exp: ApplicationExpression):
   """
