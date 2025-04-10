@@ -92,6 +92,7 @@ class Prover9Proof:
         # Check for early finish if all quantified variables have value. 
         if proof_step.is_completed():
           break
+    self.proof_steps = proof_steps
 
 class ProofClause:
   literals: list[Expression]
