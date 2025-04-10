@@ -63,7 +63,7 @@ def resolve_quantified_variables(exp: Expression, variableMap: dict[Variable, Co
     replaced_exp = exp
     
     if constant is not None:
-      replaced_exp = replaced_exp.replace(quantified_variable, constant, replace_bound=True)
+      replaced_exp = replaced_exp.replace(quantified_variable, constant, replace_bound=True).term
     else:
       replaced_exp = Expression.fromstring(str(exp))
     replaced_exp.term = resolve_quantified_variables(replaced_exp.term, variableMap)
