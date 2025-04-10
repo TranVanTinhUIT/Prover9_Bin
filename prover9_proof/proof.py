@@ -3,7 +3,7 @@ from nltk.sem.logic import Expression, Variable, ConstantExpression, QuantifiedE
 import xml.etree.ElementTree as ET
 from typing import Optional
 
-from prover9_proof_ext.utils import detect_application_expressions, detect_quantified_variables, resolve_quantified_variables, find_same_predicate, is_fact
+from prover9_proof.utils import detect_application_expressions, detect_quantified_variables, resolve_quantified_variables, find_same_predicate, is_fact
 
 class ProofStep:
   """

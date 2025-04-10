@@ -1,8 +1,8 @@
 
 # 
 import xml.etree.ElementTree as ET
-from prover9_proof_ext.prover9_proof import Proof
-from prover9_proof_ext.sample_proof import proof_xml
+from prover9_proof.proof import Proof
+from prover9_proof.sample_proof import proof_xml
 
 # Set path to proof xml file.
 root = ET.fromstring(proof_xml)
